@@ -1,316 +1,147 @@
 'use strict';
+var obenHour = ['6:00 am', '7:00 am', '8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 am', '1:00 pm', '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm', '6:00 pm', '7:00 pm'];
+var locations = [];
 
-//Location 1
+function hoursTable() {
+    // obenHour.push('Daily Location Total');
+    var container = document.getElementById('location1');
+    //console.log(container);
+    var tableEl = document.createElement('table');
+    container.appendChild(tableEl);
+    var row = document.createElement('tr');
+    tableEl.appendChild(row);
+    var head = document.createElement('th');
+    row.appendChild(head);
+    head.textContent = 'Work Hours';
 
-var Seattel = {
-    location: 'Seattel',
-    min: 23,
-    max: 65,
-    avgCookie: 6.3,
-    obenHour: ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
-    //It is better to have it as public "obenHour"
-    purchasedPerHour: [],
-    //cookiesAmount : avgCookie*randomCus(max,min),
+    for (var hour = 0; hour <= obenHour.length; hour++) {
 
-    randomCus: function (max, min) {
-        return Math.random() * (max - min) + min;
-    },
 
-    cokPerHour: function () {
-        var list = [];
-        for (var i = 0; i < this.obenHour.length; i++) {
-            this.purchasedPerHour.push(Math.floor(this.avgCookie * this.randomCus(this.max, this.min)));
-            // I am trying to make the following : this.purchasedPerHour=avrgCookies*this.randomCus
-            
-        }
-        return this.purchasedPerHour;
-    },
+        var cell = document.createElement('td');
+        row.appendChild(cell);
+        cell.textContent = obenHour[hour];
 
-    page: function () {
+    }
+    cell.textContent = 'Daily Location Total';
 
-        console.log(document);
-        var container = document.getElementById('location1');
-        // console.log(container);
-        var head = document.createElement('h1');
-        container.appendChild(head);
-        head.textContent = this.location;
-        var unorderList = document.createElement('ul');
-        container.appendChild(unorderList);
 
-        var total = 0
-        for (var j = 0; j < this.obenHour.length; j++) {
 
-            var list1 = document.createElement('li');
-            total += this.cokPerHour()[j];
-            unorderList.appendChild(list1);
-            // total+=unorderList.appendChild(list1);
-            console.log(`total:${total}`);
-            // 6am: 16 cookies
-            list1.textContent = this.obenHour[j] + ' : ' + this.cokPerHour()[j] + ' cookies';
-            //console.log(list1);
-        }
-        list1.textContent = `Total:${total} cookies`;
-        // var list1=document.createElement('ul');
-        // unorderList.appendChild(list1);
-    },
+}
+
+
+
+//console.log(locations+'= locations')
+function Shop(location, min, max, avgCookie) {
+    this.location = location;
+    this.min = min;
+    this.max = max;
+    this.avgCookie = avgCookie;
+    this.purchasedPerHour = [];
+    locations.push(this)
+}
+
+Shop.prototype.randomCus = function (max, min) {
+    return Math.random() * (max - min) + min;
 };
-// console.log(Seattel.randomCus(Seattel.max,Seattel.min));
-// Seattel.cokPerHour();
+Shop.prototype.cokPerHour = function () {
+    var list = [];
+    for (var i = 0; i < obenHour.length; i++) {
+        this.purchasedPerHour.push(Math.floor(this.avgCookie * this.randomCus(this.max, this.min)));
+        // I am trying to make the following : this.purchasedPerHour=avrgCookies*this.randomCus
+
+    }
+    return this.purchasedPerHour;
+};
+
+Shop.prototype.page = function () {
+
+    //console.log(document);
+    var container = document.getElementById('location1');
+    //console.log(container);
+    var tableEl = document.createElement('table');
+    container.appendChild(tableEl);
+    var row = document.createElement('tr');
+    tableEl.appendChild(row);
+    var head = document.createElement('th');
+    row.appendChild(head);
+    head.textContent = this.location + '';
+
+
+    var totalData = 0;
+    for (var j = 0; j < obenHour.length; j++) {
+
+
+        var cell = document.createElement('td');
+        row.appendChild(cell);
+        cell.textContent = ' ' + this.cokPerHour()[j];
+        totalData += this.cokPerHour()[j];
+        // total+=unorderList.appendChild(list1);
+        //console.log(`in hour ${this.cokPerHour()[j]} ,total(${j}):${totalData}`);
+        // 6am: 16 cookies
+        //console.log(list1);
+    }
+    var cell = document.createElement('td');
+    row.appendChild(cell);
+    cell.textContent = totalData;
+    console.log('totalData' + totalData);
+    // var list1=document.createElement('ul');
+    // unorderList.appendChild(list1);   
+};
+
+
+//Total number for coolies for all location per day and per hour
+function allCokPerHour() {
+
+    var container = document.getElementById('location1');
+    var tableEl = document.createElement('table');
+    container.appendChild(tableEl);
+    var row = document.createElement('tr');//new row
+    tableEl.appendChild(row);
+    var head = document.createElement('th');
+    row.appendChild(head);
+    head.textContent = 'Total';
+
+    var perHour = [];
+    var all=0;
+    for (var hour = 0; hour < obenHour.length; hour++) {
+        var totalSum = 0;
+        for (var index = 0; index < locations.length; index++) {
+            totalSum += locations[index].purchasedPerHour[hour];
+        }
+
+        all+=totalSum;
+        perHour.push(totalSum);
+        console.log('totalSum: '+totalSum+' ,All: '+all);
+        var cell = document.createElement('td');
+        row.appendChild(cell);
+        cell.textContent = perHour[hour];
+    }
+    var cell = document.createElement('td');
+    row.appendChild(cell);
+    cell.textContent = all;
+
+    perHour.push(all);
+
+    return [totalSum, perHour];
+};
+hoursTable();
+var Seattel = new Shop('Seattel', 23, 65, 6.3);
 Seattel.page();
-
-
-//------------------------------------------------------------------------------------------------
-
-//Location 2
-
-var Tokyo = {
-    location2: 'Tokyo',
-    min: 3,
-    max: 24,
-    avgCookie: 1.2,
-    obenHour: ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
-    purchasedPerHour: [],
-    //cookiesAmount : avgCookie*randomCus(max,min),
-
-
-    randomCus: function (max, min) {
-        return Math.random() * (max - min) + min;
-    },
-
-    cokPerHour: function () {
-        var list = [];
-        for (var i = 0; i < this.obenHour.length; i++) {
-            this.purchasedPerHour.push(Math.floor(this.avgCookie * this.randomCus(this.max, this.min)));
-            // console.log('list= '+this.obenHour[i]+'hou'+this.purchasedPerHour);
-        }
-        return this.purchasedPerHour;
-    },
-
-    page: function () {
-
-        console.log(document);
-        var container = document.getElementById('location1');
-        // console.log(container);
-        var head = document.createElement('h1');
-        container.appendChild(head);
-        head.textContent = Tokyo.location2;
-        console.log('location' + Tokyo.location2)
-        var unorderList = document.createElement('ul');
-        container.appendChild(unorderList);
-
-        var total = 0
-        for (var j = 0; j < this.obenHour.length; j++) {
-
-            var list1 = document.createElement('li');
-            total += this.cokPerHour()[j];
-            unorderList.appendChild(list1);
-            console.log(`total:${total}`);
-            // 6am: 16 cookies
-            list1.textContent = this.obenHour[j] + ' : ' + this.cokPerHour()[j] + ' cookies';
-            //console.log(list1);
-
-        }
-        list1.textContent = `Total:${total} cookies`;
-
-
-    },
-
-
-
-};
-
+var Tokyo = new Shop('Tokyo', 3, 24, 1.2);
 Tokyo.page();
-
-
-
-
-
-//Location 3
-
-var Dubai = {
-    location2: 'Dubai',
-    min: 11,
-    max: 38,
-    avgCookie: 3.7,
-    obenHour: ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
-    purchasedPerHour: [],
-    //cookiesAmount : avgCookie*randomCus(max,min),
-
-
-    randomCus: function (max, min) {
-        return Math.random() * (max - min) + min;
-    },
-
-    cokPerHour: function () {
-        var list = [];
-        for (var i = 0; i < this.obenHour.length; i++) {
-            this.purchasedPerHour.push(Math.floor(this.avgCookie * this.randomCus(this.max, this.min)));
-            // console.log('list= '+this.obenHour[i]+'hou'+this.purchasedPerHour);
-        }
-        return this.purchasedPerHour;
-    },
-
-    page: function () {
-
-        console.log(document);
-        var container = document.getElementById('location1');
-        // console.log(container);
-        var head = document.createElement('h1');
-        container.appendChild(head);
-        head.textContent = this.location2;
-        console.log('location' + Tokyo.location2)
-        var unorderList = document.createElement('ul');
-        container.appendChild(unorderList);
-
-        var total = 0
-        for (var j = 0; j < this.obenHour.length; j++) {
-
-            var list1 = document.createElement('li');
-            total += this.cokPerHour()[j];
-            unorderList.appendChild(list1);
-            console.log(`total:${total}`);
-            // 6am: 16 cookies
-            list1.textContent = this.obenHour[j] + ' : ' + this.cokPerHour()[j] + ' cookies';
-            //console.log(list1);
-
-        }
-        list1.textContent = `Total:${total} cookies`;
-
-
-    },
-
-
-
-};
-
+var Dubai = new Shop('Dubai', 11, 38, 3.7);
 Dubai.page();
-
-
-
-
-
-
-//Location 4
-
-var Paris = {
-    location2: 'Paris',
-    min: 20,
-    max: 38,
-    avgCookie: 2.3,
-    obenHour: ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
-    purchasedPerHour: [],
-    //cookiesAmount : avgCookie*randomCus(max,min),
-
-
-    randomCus: function (max, min) {
-        return Math.random() * (max - min) + min;
-    },
-
-    cokPerHour: function () {
-        var list = [];
-        for (var i = 0; i < this.obenHour.length; i++) {
-            this.purchasedPerHour.push(Math.floor(this.avgCookie * this.randomCus(this.max, this.min)));
-            // console.log('list= '+this.obenHour[i]+'hou'+this.purchasedPerHour);
-        }
-        return this.purchasedPerHour;
-    },
-
-    page: function () {
-
-        console.log(document);
-        var container = document.getElementById('location1');
-        // console.log(container);
-        var head = document.createElement('h1');
-        container.appendChild(head);
-        head.textContent = this.location2;
-        console.log('location' + Tokyo.location2)
-        var unorderList = document.createElement('ul');
-        container.appendChild(unorderList);
-
-        var total = 0
-        for (var j = 0; j < this.obenHour.length; j++) {
-
-            var list1 = document.createElement('li');
-            total += this.cokPerHour()[j];
-            unorderList.appendChild(list1);
-            console.log(`total:${total}`);
-            // 6am: 16 cookies
-            list1.textContent = this.obenHour[j] + ' : ' + this.cokPerHour()[j] + ' cookies';
-            //console.log(list1);
-
-        }
-        list1.textContent = `Total:${total} cookies`;
-
-
-    },
-
-
-
-};
-
+var Paris = new Shop('Paris', 20, 38, 2.3);
 Paris.page();
-
-
-
-
-//Location 5
-
-var Lima = {
-    location2: 'Lima',
-    min: 2,
-    max: 16,
-    avgCookie: 4.6,
-    obenHour: ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
-    purchasedPerHour: [],
-    //cookiesAmount : avgCookie*randomCus(max,min),
-
-
-    randomCus: function (max, min) {
-        return Math.random() * (max - min) + min;
-    },
-
-    cokPerHour: function () {
-        var list = [];
-        for (var i = 0; i < this.obenHour.length; i++) {
-            this.purchasedPerHour.push(Math.floor(this.avgCookie * this.randomCus(this.max, this.min)));
-            // console.log('list= '+this.obenHour[i]+'hou'+this.purchasedPerHour);
-        }
-        return this.purchasedPerHour;
-    },
-
-    page: function () {
-
-        console.log(document);
-        var container = document.getElementById('location1');
-        // console.log(container);
-        var head = document.createElement('h1');
-        container.appendChild(head);
-        head.textContent = this.location2;
-        console.log('location' + Tokyo.location2)
-        var unorderList = document.createElement('ul');
-        container.appendChild(unorderList);
-
-        var total = 0
-        for (var j = 0; j < this.obenHour.length; j++) {
-
-            var list1 = document.createElement('li');
-            total += this.cokPerHour()[j];
-            unorderList.appendChild(list1);
-            console.log(`total:${total}`);
-            // 6am: 16 cookies
-            list1.textContent = this.obenHour[j] + ' : ' + this.cokPerHour()[j] + ' cookies';
-            //console.log(list1);
-
-        }
-        list1.textContent = `Total:${total} cookies`;
-
-
-    },
-
-
-
-};
-
+var Lima = new Shop('Lima', 2, 16, 4.6);
 Lima.page();
+allCokPerHour();
+
+//console.log('total Sum:' + allCokPerHour()[0] + 'Per Hour sum' + allCokPerHour()[1]);
+//console.log('indexSeattel 0: '+locations[0].purchasedPerHour[0]);
+
+
+
+
 
 
