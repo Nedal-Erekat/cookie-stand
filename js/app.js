@@ -1,7 +1,7 @@
 'use strict';
 var obenHour = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 var locations=[];
-console.log(locations+'= locations')
+//console.log(locations+'= locations')
 function Shop(location,min,max,avgCookie){
     this.location=location;
     this.min=min;
@@ -29,27 +29,33 @@ Shop.prototype.page= function () {
     //console.log(document);
     var container = document.getElementById('location1');
      //console.log(container);
-    var head = document.createElement('h1');
-    container.appendChild(head);
-    head.textContent = this.location;
-    var unorderList = document.createElement('ul');
-    container.appendChild(unorderList);
+     var tableEl=document.createElement('table');
+     container.appendChild(tableEl);
+     var row=document.createElement('tr');
+     tableEl.appendChild(row);
+     var head = document.createElement('th');
+     row.appendChild(head);
+     head.textContent = this.location+'';
 
-    var total = 0
+
+    var totalData = 0;
     for (var j = 0; j < obenHour.length; j++) {
 
-        var list1 = document.createElement('li');
-        total += this.cokPerHour()[j];
-        unorderList.appendChild(list1);
+       
+        var cell = document.createElement('td');
+        row.appendChild(cell);
+        cell.textContent = ' ' + this.cokPerHour()[j] ;
+        totalData += this.cokPerHour()[j];
         // total+=unorderList.appendChild(list1);
-       // console.log(`total:${total}`);
+       console.log(`total:${totalData}`);
         // 6am: 16 cookies
-        list1.textContent = obenHour[j] + ' : ' + this.cokPerHour()[j] + ' cookies';
         //console.log(list1);
     }
-    list1.textContent = `Total:${total} cookies`;
+   cell.textContent = totalData;
     // var list1=document.createElement('ul');
     // unorderList.appendChild(list1);
+
+
 };
 
 var Seattel=new Shop('Seattel',23,65,6.3);
@@ -59,6 +65,13 @@ Tokyo.page();
 var Dubai=new Shop('Dubai',11,38,3.7);
 Dubai.page();
 var Paris=new Shop('Paris',20,38,2.3);
-Dubai.page();
+Paris.page();
 var Lima=new Shop('Lima',2,16,4.6);
 Lima.page();
+
+
+
+
+
+
+
