@@ -8,6 +8,7 @@ var Seattel = {
     max: 65,
     avgCookie: 6.3,
     obenHour: ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
+    //It is better to have it as public "obenHour"
     purchasedPerHour: [],
     //cookiesAmount : avgCookie*randomCus(max,min),
 
@@ -19,7 +20,8 @@ var Seattel = {
         var list = [];
         for (var i = 0; i < this.obenHour.length; i++) {
             this.purchasedPerHour.push(Math.floor(this.avgCookie * this.randomCus(this.max, this.min)));
-            // console.log('list= '+this.obenHour[i]+'hou'+this.purchasedPerHour);
+            // I am trying to make the following : this.purchasedPerHour=avrgCookies*this.randomCus
+            
         }
         return this.purchasedPerHour;
     },
@@ -46,17 +48,11 @@ var Seattel = {
             // 6am: 16 cookies
             list1.textContent = this.obenHour[j] + ' : ' + this.cokPerHour()[j] + ' cookies';
             //console.log(list1);
-
         }
         list1.textContent = `Total:${total} cookies`;
-
-
         // var list1=document.createElement('ul');
         // unorderList.appendChild(list1);
     },
-
-
-
 };
 // console.log(Seattel.randomCus(Seattel.max,Seattel.min));
 // Seattel.cokPerHour();
