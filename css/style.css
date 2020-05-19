@@ -1,17 +1,154 @@
-#location {
-    color: blue;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lobster&display=swap');
+
+
+#icon{
+    width: auto;
+    height: 100px;
+    margin: 20px;
+    float: left;
+    padding: 10px;
 }
-table{
-    background-color: cadetblue;
-    border: black solid 2px;
-    table-layout: fixed;
-    width: 300px;
-    border-collapse: collapse;
-}
-td,th{
-    border: black solid 1px;
-    width: 50px;
-    height: 50px;
-    align-content: center;
+h1{
+    font-family: 'Dancing Script', cursive;
+    font-size: 100px;
+    margin: auto;
     
+    /* width: 80%; */
+}
+#headSection{
+    
+    background-color: #acb82c;
+    display: inline-flex;
+    width: 100%;
+    
+}
+nav{
+    width: 100%;
+    background-color: #acb82c7e;
+    font-family: cursive;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 0 10px black;
+    
+}
+nav ul{
+    margin-left: auto;
+    margin-right: auto;
+    width: max-content;
+    /* margin-left: 50%; */
+
+}
+nav ul li{
+    display: inline-block;
+    padding: 10px ;
+   
+}
+nav ul li a{
+    color: black;
+    
+    text-decoration: none;
+}
+
+/* ------ body*/
+#sign{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: #a67930; */
+    border-radius: 5px;
+    /* border: black 2px solid; */
+    
+}
+#sign h2{
+    font-family: 'Dancing Script', cursive;
+    font-size: 80px;
+    font-weight: bolder;
+    padding: 40px 20px;
+    width: 96%;
+    text-align: center;
+    margin-left: 2%;
+    margin-right: 2%;
+    text-shadow: 0 0 10px black;
+    
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    
+    
+}
+#sign img{
+    box-shadow: 0 0 10px black;
+    padding: 20px;
+    width: 50%;
+    margin: 20px 25%;
+    /* margin-left: 25%;
+    margin-right: 25%; */
+    border-radius: 50px;
+
+}
+#fish{
+    /* background-color: brown; */
+
+}
+#hang{
+/* transform: rotate(-90deg); */
+width: 50%;
+/* border: solid 5px black; */
+margin: 0 25% ;
+    
+}
+
+#product{
+    width:90%;
+    height: 500px;
+    margin: 20px auto;
+    /* background-color: rgb(139, 116, 161); */
+    border: solid rgba(70, 69, 69, 0.26) 1px;
+    box-shadow: 0 0 5px gray;
+
+}
+
+#product .pro{
+    padding: 20px;
+    width: 25%;   
+    margin: 20px 20px;
+    /* background-color: crimson; */
+    float: left;
+    /* display: inline-block;  */
+    
+}
+#product div h3{
+    background-color: darkgrey;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
+    font-size: xx-large;
+    font-family: monospace;
+    font-weight: bolder;
+
+
+}
+
+
+#product div img{
+    width: 50%;
+    height: 50%;
+    margin-right:25%;
+    margin-left:25%;
+}
+
+#product div p{
+    margin: 30px;
+    height: 50%;
+    width: 100%;
+}
+
+
+footer{
+    width: 100%;
+    height: 90px;
+    background-color: #acb82c7e;
+
 }
