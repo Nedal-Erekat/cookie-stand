@@ -1,17 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lobster&display=swap');
+
+
+#icon{
+    width: auto;
+    height: 100px;
+    margin: 20px;
+    float: left;
+    padding: 10px;
+}
+h1{
+    font-family: 'Dancing Script', cursive;
+    font-size: 100px;
+    margin: auto;
+    
+    /* width: 80%; */
+}
+#headSection{
+    
+    background-color: #acb82c;
+    display: inline-flex;
+    width: 100%;
+    
+}
+nav{
+    width: 100%;
+    background-color: #acb82c7e;
+    font-family: cursive;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 0 10px black;
+    
+}
+nav ul{
+    margin-left: auto;
+    margin-right: auto;
+    width: max-content;
+    /* margin-left: 50%; */
+
+}
+nav ul li{
+    display: inline-block;
+    padding: 10px ;
+   
+}
+nav ul li a{
+    color: black;
+    
+    text-decoration: none;
+}
+
 #location {
     color: blue;
 }
-table{
-    background-color: cadetblue;
-    border: black solid 2px;
-    table-layout: fixed;
-    width: 300px;
-    border-collapse: collapse;
+/* ---------------------- */
+#location1{
+    margin: 20px auto 20px auto;
+    width: auto;
+    padding: 80px ;
+    /* background-color: chocolate; */
+
 }
-td,th{
+table{
+    /* background-color: chocolate; */
+    border: black solid 1px;
+    table-layout: fixed;
+    width: 40%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    
+}
+td{
     border: black solid 1px;
     width: 50px;
     height: 50px;
-    align-content: center;
-    
+    text-align: center;
+    vertical-align: middle;
+
+}
+th{
+    border: black solid 1px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bolder;
+      
+}
+tr :last-child{
+    background-color: darkgray;
+    border: black solid 1px;
+    width: 70px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bolder;
+
+}
+section p{
+    margin:  10% auto 0 auto;
+    text-align: center;
+    font-size: xx-large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
 }
