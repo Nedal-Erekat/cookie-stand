@@ -1,0 +1,17 @@
+#location {
+    color: blue;
+}
+table{
+    background-color: cadetblue;
+    border: black solid 2px;
+    table-layout: fixed;
+    width: 300px;
+    border-collapse: collapse;
+}
+td,th{
+    border: black solid 1px;
+    width: 50px;
+    height: 50px;
+    align-content: center;
+    
+}
