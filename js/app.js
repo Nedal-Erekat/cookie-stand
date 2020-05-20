@@ -3,7 +3,7 @@ var obenHour = ['6:00 am', '7:00 am', '8:00 am', '9:00 am', '10:00 am', '11:00 a
 var locations = [];// To save the objects of every individual location
 
 // ------------------------------------------------------------------------------------
-// - the following function creats the first row in table which includes the working hour
+// the following function creats the first row in table which includes the working hour
 
 
 function hoursTable() {
@@ -76,7 +76,7 @@ Shop.prototype.page = function () {
 
     head.textContent = this.location + '';//sit "location" propirety on the first cell in row
 
-// the following loop crear cells for table and call "cokPerHour()[j]" method through the loop and use "openHour" the globel var as acounter to creat compleat row.
+    // the following loop crear cells for table and call "cokPerHour()[j]" method through the loop and use "openHour" the globel var as acounter to creat compleat row.
     var totalData = 0;//to calculat the total amount for location
     for (var j = 0; j < obenHour.length; j++) {
 
@@ -84,14 +84,14 @@ Shop.prototype.page = function () {
         row.appendChild(cell);
         cell.textContent = ' ' + this.cokPerHour()[j];
         totalData += this.cokPerHour()[j];//update the "totalData" var. to keep adding the values
-        
+
     }
-// creat the last cell to save the "totalData"
+    // creat the last cell to save the "totalData"
     var cell = document.createElement('td');
     row.appendChild(cell);
     cell.textContent = totalData;
     console.log('totalData' + totalData);
-      
+
 };
 
 
@@ -115,14 +115,14 @@ function allCokPerHour() {
     // the first loop hold on spisific"obenHour" until the next loop get all that "obenHour" valus for all rows.
 
     var perHour = [];//to creat array contains all total amount per hour
-    var all=0;       //to save the total of total
+    var all = 0;       //to save the total of total
     for (var hour = 0; hour < obenHour.length; hour++) {
         var totalSum = 0;
         for (var index = 0; index < locations.length; index++) {  //make the globle "locations"array as counter wich is contains the locations objects 
             totalSum += locations[index].purchasedPerHour[hour];  //add "totalSum" to previous, asb for sure valus and start from 0
         }
 
-        all+=totalSum;
+        all += totalSum;
         perHour.push(totalSum);//save in array
 
         var cell = document.createElement('td');
@@ -153,6 +153,32 @@ Paris.page();
 var Lima = new Shop('Lima', 2, 16, 4.6);
 Lima.page();
 allCokPerHour();
+
+
+var newLocation=document.getElementById('NewLocation');
+
+newLocation.addEventListener('submit',function(event){
+
+
+    event.preventDefault();
+    console.log(event);
+
+    var XLocation=event.target.location.value;
+    console.log('location'+XLocation);
+    var maxVlaue=event.target.max.value;
+    console.log('max'+maxVlaue);
+    var minVlaue=event.target.min.value;
+    console.log('min'+minVlaue);
+    var avgVlaue=event.target.avg.value;
+    console.log('avg'+avgVlaue);
+
+    var creat=new Shop(XLocation, minVlaue, maxVlaue, avgVlaue);
+    // locations.push(creat);
+    console.log(locations);
+
+});
+console.log(locations);
+
 
 
 
