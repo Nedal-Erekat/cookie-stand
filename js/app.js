@@ -60,7 +60,7 @@ Shop.prototype.cokPerHour = function () {
     return this.purchasedPerHour;
 };
 
-// the following method creat 
+// the following method creat entire table
 Shop.prototype.page = function () {
 
     var container = document.getElementById('location1');
@@ -140,6 +140,7 @@ function allCokPerHour() {
 
 
 // calling the constracters and functions
+console.log('value: '+allCokPerHour()[0]);
 
 hoursTable();
 var Seattel = new Shop('Seattel', 23, 65, 6.3);
@@ -152,7 +153,7 @@ var Paris = new Shop('Paris', 20, 38, 2.3);
 Paris.page();
 var Lima = new Shop('Lima', 2, 16, 4.6);
 Lima.page();
-allCokPerHour();
+// allCokPerHour();
 
 
 var newLocation=document.getElementById('NewLocation');
@@ -160,7 +161,7 @@ var newLocation=document.getElementById('NewLocation');
 newLocation.addEventListener('submit',function(event){
 
 
-    event.preventDefault();
+   event.preventDefault();
     console.log(event);
 
     var XLocation=event.target.location.value;
@@ -174,8 +175,16 @@ newLocation.addEventListener('submit',function(event){
 
     var creat=new Shop(XLocation, minVlaue, maxVlaue, avgVlaue);
     // locations.push(creat);
+   for (var x;x<locations.length;x++){
+       
+       locations[x];
+       console(locations[x]);
+   }
     console.log(locations);
-
+    creat.page();
+    
+    
+    // allCokPerHour();
 });
 console.log(locations);
 
