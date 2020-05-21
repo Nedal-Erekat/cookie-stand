@@ -1,3 +1,9 @@
+
+var someObj=[{a:10,b:9}];
+ someObj.push(20);
+
+console.log(someObj);
+
 //Location 1
 /*
 var Seattel = {
