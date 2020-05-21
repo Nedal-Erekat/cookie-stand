@@ -1,17 +1,20 @@
 'use strict';
 var obenHour = ['6:00 am', '7:00 am', '8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 am', '1:00 pm', '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm', '6:00 pm', '7:00 pm'];
 var locations = [];// To save the objects of every individual location
+var container = document.getElementById('location1');
 
+var tableEl = document.createElement('table');
+container.appendChild(tableEl);
 // ------------------------------------------------------------------------------------
 // the following function creats the first row in table which includes the working hour
 
 
 function hoursTable() {
     // obenHour.push('Daily Location Total');
-    var container = document.getElementById('location1');
+    // var container = document.getElementById('location1');
 
-    var tableEl = document.createElement('table');
-    container.appendChild(tableEl);
+    // var tableEl = document.createElement('table');
+    // container.appendChild(tableEl);
 
     var row = document.createElement('tr');
     tableEl.appendChild(row);
@@ -63,10 +66,10 @@ Shop.prototype.cokPerHour = function () {
 // the following method creat entire table
 Shop.prototype.page = function () {
 
-    var container = document.getElementById('location1');
+    // var container = document.getElementById('location1');
 
-    var tableEl = document.createElement('table');
-    container.appendChild(tableEl);
+    // var tableEl = document.createElement('table');
+    // container.appendChild(tableEl);
 
     var row = document.createElement('tr');
     tableEl.appendChild(row);
@@ -98,10 +101,10 @@ Shop.prototype.page = function () {
 //the folowing function calculat the Total amount of cookies for all location per hour(vertically through the table)
 function allCokPerHour() {
 
-    var container = document.getElementById('location1');
+    // var container = document.getElementById('location1');
 
-    var tableEl = document.createElement('table');
-    container.appendChild(tableEl);
+    // var tableEl = document.createElement('table');
+    // container.appendChild(tableEl);
 
     var row = document.createElement('tr');//new row
     tableEl.appendChild(row);
@@ -157,33 +160,26 @@ Lima.page();
 allCokPerHour();
 
 
-
+///creat an event
 var newLocation=document.getElementById('NewLocation');
 
 newLocation.addEventListener('submit',function(event){
 
-
    event.preventDefault();
-    console.log(event);
 
     var XLocation=event.target.location.value;
     var maxVlaue=event.target.max.value;
     var minVlaue=event.target.min.value;
     var avgVlaue=event.target.avg.value;
 
+    document.getElementById("NewLocation").reset();
+
     var creat=new Shop(XLocation, minVlaue, maxVlaue, avgVlaue);
-    // locations.push(creat);
-//    for (var x;x<locations.length;x++){
-       
-//        locations[x];
-//        console(locations[x]);
-//    }
-    console.log(locations);
+    tableEl.removeChild(tableEl.lastChild);
     creat.page();
-    
-    
+    allCokPerHour();
+ 
 });
-console.log(locations);
 
 
 
