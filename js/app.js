@@ -76,7 +76,7 @@ Shop.prototype.page = function () {
 
     head.textContent = this.location + '';//sit "location" propirety on the first cell in row
 
-    // the following loop crear cells for table and call "cokPerHour()[j]" method through the loop and use "openHour" the globel var as acounter to creat compleat row.
+    // the following loop creat cells for table and call "cokPerHour()[j]" method through the loop and use "openHour" the globel var as acounter to creat compleat row.
     var totalData = 0;//to calculat the total amount for location
     for (var j = 0; j < obenHour.length; j++) {
 
@@ -135,12 +135,13 @@ function allCokPerHour() {
 
     perHour.push(all);
 
+    
     return [totalSum, perHour];
 };
 
 
 // calling the constracters and functions
-console.log('value: '+allCokPerHour()[0]);
+
 
 hoursTable();
 var Seattel = new Shop('Seattel', 23, 65, 6.3);
@@ -153,7 +154,8 @@ var Paris = new Shop('Paris', 20, 38, 2.3);
 Paris.page();
 var Lima = new Shop('Lima', 2, 16, 4.6);
 Lima.page();
-// allCokPerHour();
+allCokPerHour();
+
 
 
 var newLocation=document.getElementById('NewLocation');
@@ -165,26 +167,21 @@ newLocation.addEventListener('submit',function(event){
     console.log(event);
 
     var XLocation=event.target.location.value;
-    console.log('location'+XLocation);
     var maxVlaue=event.target.max.value;
-    console.log('max'+maxVlaue);
     var minVlaue=event.target.min.value;
-    console.log('min'+minVlaue);
     var avgVlaue=event.target.avg.value;
-    console.log('avg'+avgVlaue);
 
     var creat=new Shop(XLocation, minVlaue, maxVlaue, avgVlaue);
     // locations.push(creat);
-   for (var x;x<locations.length;x++){
+//    for (var x;x<locations.length;x++){
        
-       locations[x];
-       console(locations[x]);
-   }
+//        locations[x];
+//        console(locations[x]);
+//    }
     console.log(locations);
     creat.page();
     
     
-    // allCokPerHour();
 });
 console.log(locations);
 
