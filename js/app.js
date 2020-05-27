@@ -172,12 +172,20 @@ newLocation.addEventListener('submit',function(event){
     var minVlaue=event.target.min.value;
     var avgVlaue=event.target.avg.value;
 
-    document.getElementById("NewLocation").reset();
+    // document.getElementById("NewLocation").reset();
+
+if(maxVlaue>minVlaue){
 
     var creat=new Shop(XLocation, minVlaue, maxVlaue, avgVlaue);
     tableEl.removeChild(tableEl.lastChild);
     creat.page();
     allCokPerHour();
+    console.log('correct')
+}else{
+    alert('Make sure you inserted the values in the right place,Check the max and min are in right place')
+    console.log('some thing wrong')
+}
+
  
 });
 
