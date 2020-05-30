@@ -44,7 +44,7 @@ function Shop(location, min, max, avgCookie) {
     this.avgCookie = avgCookie;
     this.purchasedPerHour = [];//to save the calculated valus of purchesed cookies per hour
     locations.push(this)
-}
+};
 
 // this method calculat random num. of customers depending on max, min and avgCookies properities
 
@@ -86,14 +86,19 @@ Shop.prototype.page = function () {
         var cell = document.createElement('td');
         row.appendChild(cell);
         cell.textContent = ' ' + this.cokPerHour()[j];
+        
+        
         totalData += this.cokPerHour()[j];//update the "totalData" var. to keep adding the values
+        // console.log(this.purchasedPerHour + 'see<>this' + this.cokPerHour());
+        
 
     }
     // creat the last cell to save the "totalData"
     var cell = document.createElement('td');
     row.appendChild(cell);
     cell.textContent = totalData;
-    console.log('totalData' + totalData);
+    console.log('purchasedPerHour' + this.purchasedPerHour);
+    
 
 };
 
@@ -145,10 +150,10 @@ function allCokPerHour() {
 
 // calling the constracters and functions
 
-
 hoursTable();
 var Seattel = new Shop('Seattel', 23, 65, 6.3);
 Seattel.page();
+
 var Tokyo = new Shop('Tokyo', 3, 24, 1.2);
 Tokyo.page();
 var Dubai = new Shop('Dubai', 11, 38, 3.7);
